@@ -21,7 +21,7 @@ const Header = () => {
             </div>
             <div className="col-6">
               <p className="text-end text-white mb-0">
-                Hotline:{" "}
+                Hotline:
                 <a className="text-white" href="tel:+254 113 168134">
                   +254 113 168134
                 </a>
@@ -44,12 +44,12 @@ const Header = () => {
               <div className="input-group">
                 <input
                   type="text"
-                  class="form-control py-2"
+                  className="form-control py-2"
                   placeholder="Search Product Here..."
                   aria-label="Search Product Here..."
                   aria-describedby="basic-addon2"
                 />
-                <span class="input-group-text p-3" id="basic-addon2">
+                <span className="input-group-text p-3" id="basic-addon2">
                   <BsSearch className="fs-6" />
                 </span>
               </div>
@@ -113,7 +113,7 @@ const Header = () => {
             <div className="col-12">
               <div className="menu-bottom d-flex align-items-center gap-30">
                 <div>
-                  <div class="dropdown">
+                  <div className="dropdown">
                     <button
                       className="btn btn-secondary dropdown-toggle align-items-center bg-transparent border-0 gap-15 d-flex"
                       type="button"
