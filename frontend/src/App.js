@@ -21,6 +21,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Product from "./pages/Product";
 import Checkout from "./pages/Checkout";
+import Orders from "./pages/Orders";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="wishlist" element={<WishList />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="orders" element={<Orders />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="forgot-password" element={<ForgotPassword />} />
