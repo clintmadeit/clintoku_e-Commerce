@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
+        // echo "<pre>"; print_r(Auth::guard("admin")->user()); die();
         return view("admin.dashboard");
     }
 
@@ -43,5 +46,40 @@ class AdminController extends Controller
     {
         Auth::guard("admin")->logout();
         return redirect("admin/login");
+    }
+
+    public function updatePassword(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // Check if the current password is correct
+            if (Hash::check($data["current_pwd"], Auth::guard('admin')->user()->password)) 
+            {
+                // Check if new password and confirm password are matching
+                if ($data['new_pwd'] == $data['confirm_pwd']) {
+                    // Update the new password
+                    Admin::where('id', Auth::guard('admin')->user()->id)->update(['password'=> bcrypt($data['new_pwd'])]);
+                    return redirect()->back()->with('success','Password has been updated successfully!');
+                }else {
+                    return redirect()->back()->with('error','New Password and confirm password does not match');
+                }
+
+            } else {
+                return redirect()->back()->with('error', 'Your Current password is incorrect');
+            }
+
+        }
+        return view("admin.update_password");
+    }
+
+    public function checkCurrentPassword(Request $request)
+    {
+        $data = $request->all();
+        if (Hash::check($data["current_pwd"], Auth::guard('admin')->user()->password)) 
+        {
+            return response()->json(['valid' => true]);
+        }else{
+            return response()->json(['valid' => false]);
+        }
     }
 }

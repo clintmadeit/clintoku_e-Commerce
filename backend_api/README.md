@@ -1,2 +1,2 @@
-## Backend Section of the ClintOku Ecommerce We App
+## Backend Section of the ClintOku Ecommerce Web App
 ## The Backend is powered by Laravel
